@@ -8,8 +8,8 @@ struct _TestParam1 {
   double complex exp;
 } param1[] = {
   {
+    0.7615941559557648881195,
     1.0,
-    0.78539816339744831,
   },
 };
 
@@ -18,8 +18,8 @@ struct _TestParam2 {
   float complex exp;
 } param2[] = {
   {
+    0.7615941559557648881195F,
     1.0,
-    0.7853981634F,
   },
 };
 
@@ -28,25 +28,25 @@ struct _TestParam3 {
   long double complex exp;
 } param3[] = {
   {
+    0.7615941559557648881195L,
     1.0,
-    0.7853981633974483096157L,
   },
 };
 
 TESTCASE(c99_7_3_6_3)
 {
   for(int i=0; i<ARRAY_SIZEOF(param1); i++) {
-    if(catanh(param1[i].val) != param1[i].exp) {
+    if(!CD_EQ(catanh(param1[i].val), param1[i].exp)) {
       TEST_FIN(FAIL);
     }
   }
   for(int i=0; i<ARRAY_SIZEOF(param2); i++) {
-    if(catanhf(param2[i].val) != param2[i].exp) {
+    if(!CF_EQ(catanhf(param2[i].val), param2[i].exp)) {
       TEST_FIN(FAIL);
     }
   }
   for(int i=0; i<ARRAY_SIZEOF(param3); i++) {
-    if(catanhl(param3[i].val) != param3[i].exp) {
+    if(!CL_EQ(catanhl(param3[i].val), param3[i].exp)) {
       TEST_FIN(FAIL);
     }
   }

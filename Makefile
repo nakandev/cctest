@@ -1,22 +1,24 @@
 TESTCASE ?= c99_7_2_p1
 WORKDIR  ?= work
 
+ifndef SUITEDIR
+  SUITEDIR ?= .
+endif
 SRCS     ?= c99/7/$(TESTCASE).c
-TARGET    = $(WORKDIR)/$(TESTCASE)
+TSRCS    = $(SRCS:%=$(SUITEDIR)/%)
+TARGET   = $(WORKDIR)/$(TESTCASE)
 
 CC       ?= clang
-CFLAGS    += -std=c99 -I./include
-LDFLAGS   += -lm
+TCFLAGS  = $(CFLAGS) -std=c99 -I$(SUITEDIR)/util
+TLDFLAGS = $(LDFLAGS) -lm
 
 all: $(WORKDIR) $(TARGET)
-	$(shell ./$(TARGET))
-#	@echo $(.SHELLSTATUS)
 
 $(WORKDIR):
 	mkdir -p $@
 
-$(TARGET): $(SRCS)
-	$(CC) $(CFLAGS) $(LDFLAGS) $^ -o $@
+$(TARGET): $(TSRCS) $(SUITEDIR)/util/testutil.c
+	$(CC) $(TCFLAGS) $(TLDFLAGS) $^ -o $@
 
 clean:
 	$(RM) $(TARGET)

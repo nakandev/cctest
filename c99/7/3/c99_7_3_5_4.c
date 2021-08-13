@@ -36,17 +36,17 @@ struct _TestParam3 {
 TESTCASE(c99_7_3_5_4)
 {
   for(int i=0; i<ARRAY_SIZEOF(param1); i++) {
-    if(ccos(param1[i].val) != param1[i].exp) {
+    if(!CD_EQ(ccos(param1[i].val), param1[i].exp)) {
       TEST_FIN(FAIL);
     }
   }
   for(int i=0; i<ARRAY_SIZEOF(param2); i++) {
-    if(ccosf(param2[i].val) != param2[i].exp) {
+    if(!CF_EQ(ccosf(param2[i].val), param2[i].exp)) {
       TEST_FIN(FAIL);
     }
   }
   for(int i=0; i<ARRAY_SIZEOF(param3); i++) {
-    if(ccosl(param3[i].val) != param3[i].exp) {
+    if(!CL_EQ(ccosl(param3[i].val), param3[i].exp)) {
       TEST_FIN(FAIL);
     }
   }
