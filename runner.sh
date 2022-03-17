@@ -7,11 +7,11 @@ usage(){
   echo "options:"
   echo "    --suite <DIR>           TestSuite root directory"
   echo "    --work <DIR>            Working directory"
-  echo "    --cc <STR>              Target Compiler"
-  echo "    --exec <STR>            Target Executer"
+  echo "    --cc <FILE>             Target Compiler"
+  echo "    --exec <FILE>           Target Executer"
   echo "    --cflags <STR>          Target CFLAGS"
   echo "    --ldflags <STR>         Target LDFLAGS"
-  echo "    -t | --testlist <FILE>  Tesetlist file"
+  echo "    --testlist <FILE>       Tesetlist file"
 }
 
 SUITEDIR=$(cd $(dirname "$0"); pwd)
@@ -54,7 +54,7 @@ while [ $# -gt 0 ]; do
       CFLAGS="$2"
       shift 2
       ;;
-    -t | --testlist)
+    --testlist)
       TESTLIST="$2"
       shift 2
       ;;
